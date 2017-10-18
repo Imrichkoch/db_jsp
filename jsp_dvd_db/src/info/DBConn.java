@@ -12,8 +12,8 @@ public class DBConn {
 	private static final String JDBC_DRIVER = "org.postgresql.Driver";
 	private static final String USER = "postgres";
 	private static final String PWD = "imro";
-	private final static String person = "Person";
-	private final static String schema = "person";
+	private final static String person = "person";
+	private final static String schema = "Person";
 	static Connection conn = null;
 	static Statement stmt = null;
 	static DatabaseMetaData databaseDate = null;
@@ -27,7 +27,7 @@ public class DBConn {
 			stmt = conn.createStatement();
 
 			if (findTable(databaseResults, databaseDate)) {
-				String sql = "CREATE TABLE person.Person (name varchar, email varchar, age numeric)";
+				String sql = "CREATE TABLE person.person (name varchar, email varchar, age numeric)";
 				stmt.executeUpdate(sql);
 			}
 
@@ -68,8 +68,8 @@ public class DBConn {
 
 			stmt = conn.createStatement();
 
-			String sql = "UPDATE item SET name = '" + person.getName() + ", email = '" + person.getEmail() + ", age = '"
-					+ person.getAge();
+			String sql = "INSERT INTO person.person (name, email, age) VALUES ('" + person.getName() + "','"
+					+ person.getEmail() + "'," + person.getAge() + ")";
 			stmt.executeUpdate(sql);
 		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
